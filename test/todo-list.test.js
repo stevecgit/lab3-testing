@@ -76,4 +76,29 @@ describe('To-do list functionality', () => {
     expect(tasksCount).toBe(3)
     
   })
+
+  it('should count the correct number of incomplete tasks in a to-do list', () => {
+    const todoList = new TodoList()
+    todoList.addTask(new Task('1', true))
+    todoList.addTask(new Task('1', false))
+    todoList.addTask(new Task('1', false))
+
+    const incompleteTasksCount = todoList.countIncompleteTasks()
+
+    expect(incompleteTasksCount).toBe(2)
+
+  })
+
+  it('should count the correct number of complete tasks in a to-do list', () => {
+    const todoList = new TodoList()
+    todoList.addTask(new Task('1', true))
+    todoList.addTask(new Task('1', false))
+    todoList.addTask(new Task('1', false))
+
+    const completeTasksCount = todoList.countCompleteTasks()
+
+    expect(completeTasksCount).toBe(1)
+
+  })
+
 })

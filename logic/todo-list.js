@@ -30,15 +30,19 @@ export class TodoList {
   }
   
   countTotalTasks() {
-    return -1
+    return this.tasks.length
   }
 
   countIncompleteTasks() {
-    return -1
+    return this.tasks
+      .filter((task) => !task.isComplete)
+      .length
   }
 
   countCompleteTasks() {
-    return -1
+    return this.tasks
+      .filter((task) => task.isComplete)
+      .length
   }
 
   checkIsEntireListComplete() {
