@@ -26,15 +26,54 @@ describe('To-do list functionality', () => {
     expect(todoList.tasks).toEqual([testTask1, testTask2])
   })
 
-  it.skip('should not add a task to a list if the task has no name', () => {
-    // 🎯 implement test here
+  it('should not add a task to a list if the task has no name', () => {
+    
+    const todoList = new TodoList()
+    const testTask = new Task('')
+
+    todoList.addTask(testTask)
+
+    expect(todoList.tasks).toEqual([])
+
   })
 
-  it.skip('should correctly toggle the completion status of a task', () => {
-    // 🎯 implement test here
+  it('should correctly toggle the completion status of a task', () => {
+   
+    const testTask = new Task('Test task')
+
+    expect(testTask.isComplete).toBe(false)
+
+    testTask.toggleCompletion()
+    expect(testTask.isComplete).toBe(true)
+
+    testTask.toggleCompletion()
+    expect(testTask.isComplete).toBe(false)
   })
 
-  it.skip('should correctly delete a task from a to-do list', () => {
-    // 🎯 implement test here
+  it('should correctly delete a task from a to-do list', () => {
+    const todoList = new TodoList()
+    const testTaskToDelete = new Task('Test task to delete')
+    const testTaskToKeep = new Task('Test task to keep')
+
+    todoList.addTask(testTaskToKeep)
+
+    todoList.deleteTask(testTaskToDelete)
+
+    expect(todoList.tasks).toEqual([testTaskToKeep])
+
+
+
+  })
+
+  it('should count the correct total number of tasks in a to-do list', () => {
+    const todoList = new TodoList()
+    todoList.addTask(new Task('1'))
+    todoList.addTask(new Task('2'))
+    todoList.addTask(new Task('3'))
+    
+    const tasksCount = todoList.countTotalTasks()
+
+    expect(tasksCount).toBe(3)
+    
   })
 })
