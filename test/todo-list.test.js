@@ -101,4 +101,32 @@ describe('To-do list functionality', () => {
 
   })
 
+  it('should determine that a to-do list is not complete if there are no tasks in it', () => {
+    const todoList = new TodoList()
+    const isListComplete = todoList.checkIsEntireListComplete()
+    expect(isListComplete).toBe(false)
+  })
+
+  it('should determine that a to-do list is not complete if it contains incomplete tasks', () => {
+    const todoList = new TodoList()
+    todoList.addTask(new Task('1', true))
+    todoList.addTask(new Task('2', true))
+    todoList.addTask(new Task('3', false))
+
+    const isListComplete = todoList.checkIsEntireListComplete()
+
+    expect(isListComplete).toBe(false)
+  })
+
+  it('should determine that a to-do list is complete if every task in it is complete', () => {
+    const todoList = new TodoList()
+    todoList.addTask(new Task('1', true))
+    todoList.addTask(new Task('2', true))
+    todoList.addTask(new Task('3', true))
+
+    const isListComplete = todoList.checkIsEntireListComplete()
+
+    expect(isListComplete).toBe(true)
+  })
+
 })
